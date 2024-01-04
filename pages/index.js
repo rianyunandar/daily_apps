@@ -1,9 +1,10 @@
-import { Button } from 'flowbite-react';
+import { Button } from "flowbite-react";
+import MobileLayout from "@/components/mobile-layout";
 
 export default function MyPage() {
   return (
-    <div>
+    <MobileLayout>
       <Button>Click me</Button>
-    </div>
+    </MobileLayout>
   );
 }
