@@ -31,6 +31,8 @@ const Reply = () => {
 
   useEffect(() => {
     getReplies();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleApiRequest = async (url, method, data = {}) => {
@@ -71,7 +73,11 @@ const Reply = () => {
 
   return (
     <div className="w-full">
-      <form onSubmit={addReply} className="flex flex-col gap-4 max-w-md" id="textarea">
+      <form
+        onSubmit={addReply}
+        className="flex flex-col gap-4 max-w-md"
+        id="textarea"
+      >
         <Label htmlFor="comment" value="Replies Post" />
         <Textarea
           id="comment"

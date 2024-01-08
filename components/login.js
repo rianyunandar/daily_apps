@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Button, Card, Label, TextInput } from "flowbite-react";
 import Cookies from "js-cookie";
 import { useAuth } from "@/auth/auth";
+import Link from "next/link";
 
 const AuthCard = () => {
   const router = useRouter();
@@ -89,9 +90,9 @@ const AuthCard = () => {
         <Button onClick={handleSubmit}>Login</Button>
         <div>
           Don&apos;t have an account?{" "}
-          <a href="/signup" className="text-blue-600">
+          <Link href="/signup" className="text-blue-600">
             Register
-          </a>
+          </Link>
         </div>
       </form>
     </Card>

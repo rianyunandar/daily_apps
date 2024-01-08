@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Button, Card, Label, TextInput } from "flowbite-react";
+import Link from "next/link";
 
 const SignupPage = () => {
   const router = useRouter();
@@ -88,9 +89,9 @@ const SignupPage = () => {
         <Button type="submit">Signup</Button>
         <div>
           Already have an account?{" "}
-          <a href="/login" className="text-blue-600">
+          <Link href="/login" className="text-blue-600">
             Login
-          </a>
+          </Link>
         </div>
       </form>
     </Card>

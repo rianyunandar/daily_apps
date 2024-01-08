@@ -6,9 +6,9 @@ import Login from "@/components/login";
 export default function MyPage() {
   return (
     <MobileLayout>
-        <HEader />
-        <Login />
-
+      <HEader />
+      <Login />
+      <span>live version : daily-apps-4dlx2b7l4-rianyunandar.vercel.app</span>
     </MobileLayout>
   );
 }
