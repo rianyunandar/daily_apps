@@ -96,6 +96,35 @@ export default function Home() {
     }
   };
 
+  const handleDelete = async (postId) => {
+    try {
+      const config = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      await fetch(
+        `https://paace-f178cafcae7b.nevacloud.io/api/post/delete/${postId}`,
+        config
+      );
+
+      router.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleEdit = async (postId) => {
+    try {
+      router.push(`/post/${postId}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <form
