@@ -1,52 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Button, Card, Label, TextInput } from "flowbite-react";
-import Cookies from "js-cookie";
 
-const AuthCard = () => {
+const SignupPage = () => {
   const router = useRouter();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
 
-  // useEffect(() => {
-  //   const userToken = Cookies.get("user_token");
-
-  //   if (userToken) {
-  //     router.push("/dashboard");
-  //   }
-  // }, [router]);
-
-  const handleSubmit = async (event) => {
+  const handleSignup = async (event) => {
     event.preventDefault();
 
-    if (!email || !password) {
+    if (!name || !email || !password) {
       setMsg("Please fill all fields");
       return;
     }
 
     try {
       const response = await fetch(
-        "https://paace-f178cafcae7b.nevacloud.io/api/login/",
+        "https://paace-f178cafcae7b.nevacloud.io/api/register/", // Adjust the URL for your signup API endpoint
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email, password }),
+          body: JSON.stringify({ name, email, password }),
         }
       );
 
       const responseData = await response.json();
 
-      console.log(responseData);
-
+      window.alert(
+        "You have successfully registered!   Please login to continue.   Thank you!"
+      );
       if (responseData.success) {
-        Cookies.set("user_token", responseData.data.token, {
-          expires: new Date(responseData.data.expires_at),
-          path: "/",
-        });
-        router.push("/dashboard");
+        router.push("/");
       }
     } catch (error) {
       console.error(error);
@@ -56,15 +45,28 @@ const AuthCard = () => {
 
   return (
     <Card className="w-full py-5">
-      <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-2" onSubmit={handleSignup}>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="email1" value="Your email" />
+            <Label htmlFor="name" value="Your name" />
           </div>
           <TextInput
-            id="email1"
+            id="name"
+            type="text"
+            placeholder="John Doe"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="email" value="Your email" />
+          </div>
+          <TextInput
+            id="email"
             type="email"
-            placeholder="rehan@mail.com"
+            placeholder="john.doe@mail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -72,10 +74,10 @@ const AuthCard = () => {
         </div>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="password1" value="Your password" />
+            <Label htmlFor="password" value="Your password" />
           </div>
           <TextInput
-            id="password1"
+            id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -83,11 +85,11 @@ const AuthCard = () => {
           />
         </div>
         {msg && <p className="text-red-500">{msg}</p>}
-        <Button onClick={handleSubmit}>Login</Button>
+        <Button type="submit">Signup</Button>
         <div>
-          Don&apos;t have an account?{" "}
-          <a href="/signup" className="text-blue-600">
-            Register
+          Already have an account?{" "}
+          <a href="/login" className="text-blue-600">
+            Login
           </a>
         </div>
       </form>
@@ -95,4 +97,4 @@ const AuthCard = () => {
   );
 };
 
-export default AuthCard;
+export default SignupPage;

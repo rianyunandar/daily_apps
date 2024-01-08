@@ -6,9 +6,8 @@ import Login from "@/components/login";
 export default function MyPage() {
   return (
     <MobileLayout>
-        <HEader />
-        <Login />
-
+      <HEader />
+      <Login />
     </MobileLayout>
   );
 }
