@@ -49,7 +49,7 @@ const renderPost = (post, handleLike, handleUnlike, deletePost) => {
           </Button>
         )}
 
-        <Link className="reply-button" href={`/replypage/${id}`}>
+        <Link className="reply-button" href={`/reply/${id}`}>
           <Button>
             <BsChat />
             {replies_count} Replies
