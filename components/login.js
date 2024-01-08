@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Button, Card, Label, TextInput } from "flowbite-react";
 import Cookies from "js-cookie";
+import { useAuth } from "@/auth/auth";
 
 const AuthCard = () => {
   const router = useRouter();
+  const { userData } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
 
-  // useEffect(() => {
-  //   const userToken = Cookies.get("user_token");
-
-  //   if (userToken) {
-  //     router.push("/dashboard");
-  //   }
-  // }, [router]);
+  useEffect(() => {
+    if (userData) {
+      router.push("/dashboard");
+    }
+  }, [router, userData]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,7 +46,10 @@ const AuthCard = () => {
           expires: new Date(responseData.data.expires_at),
           path: "/",
         });
-        router.push("/dashboard");
+        router.reload();
+      } else {
+        console.log(responseData);
+        setMsg(responseData.message);
       }
     } catch (error) {
       console.error(error);

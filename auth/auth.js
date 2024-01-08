@@ -1,9 +1,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
-
+import { useRouter } from "next/router";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const router = useRouter();
   const [token, setToken] = useState(null);
   const [userData, setUserData] = useState(null);
 
@@ -37,6 +38,7 @@ export const AuthProvider = ({ children }) => {
     Cookies.remove("user_token");
     setToken(null);
     setUserData(null);
+    router.push("/");
   };
 
   return (

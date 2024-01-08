@@ -29,10 +29,11 @@ export default function Home() {
       console.error(error);
     }
   };
-
   useEffect(() => {
-    fetchPosts();
-  }, []);
+    if (token && userData) {
+      fetchPosts();
+    }
+  }, [token, userData]);
 
   const addNewPost = async () => {
     try {
@@ -210,7 +211,7 @@ export default function Home() {
                       {post.replies_count} Replies
                     </div>
                   </Link>
-                  {post.user.id === userData.id && (
+                  {userData && post.user.id === userData.id && (
                     <Button
                       className="bg-yellow-300 text-slate-800 py-3 w-12 rounded-lg"
                       onClick={() => handleEdit(post.id)}
@@ -219,7 +220,7 @@ export default function Home() {
                     </Button>
                   )}
 
-                  {post.user.id === userData.id && (
+                  {userData && post.user.id === userData.id && (
                     <Button
                       className="bg-red-400 text-slate-800 py-3 w-12 rounded-lg"
                       onClick={() => handleDelete(post.id)}
