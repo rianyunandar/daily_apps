@@ -60,8 +60,8 @@ const EditPost = () => {
 
   return (
     <>
-      <Card>
-        <div className="max-w-md" id="textarea">
+      <Card className="w-full">
+        <div className="" id="textarea">
           <div className="mb-2 block">
             <Label htmlFor="edit-comment" value="Edit your message" />
           </div>

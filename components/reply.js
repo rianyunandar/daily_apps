@@ -70,7 +70,7 @@ const Reply = () => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <form onSubmit={addReply} className="flex flex-col gap-4 max-w-md" id="textarea">
         <Label htmlFor="comment" value="Replies Post" />
         <Textarea

@@ -175,7 +175,7 @@ const Profile = () => {
 
   return (
     <>
-      <Card>
+      <Card className="w-full">
         <div className="flex justify-end px-4 pt-4"></div>
         <div className="flex flex-col items-center pb-10">
           <Avatar
@@ -199,7 +199,7 @@ const Profile = () => {
         </div>
       </Card>
 
-      <ul>
+      <ul className="w-full">
         <Card>
           <div className="flex flex-col items-center pb-10">
             {myPosts &&
